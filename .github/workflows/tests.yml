@@ -36,6 +36,12 @@ jobs:
 
       - run: brew test-bot --only-setup
 
+      - name: Install FUSE-T
+        if: matrix.os == 'macos-26' || matrix.os == 'macos-15-intel'
+        run: |
+          brew install --cask fuse-t
+          /Users/runner/work/homebrew-doodads/homebrew-doodads/cmd/fuse-t-links
+
       - run: brew test-bot --only-tap-syntax
       - name: Base64-encode GITHUB_TOKEN for HOMEBREW_DOCKER_REGISTRY_TOKEN
         id: base64-encode
